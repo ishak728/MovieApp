@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigatinn"
+    app:startDestination="@id/homePageFragment">
+    <fragment
+        android:id="@+id/homePageFragment"
+        android:name="com.example.movieapp.view.HomePageFragment"
+        android:label="HomePageFragment" >
+        <action
+            android:id="@+id/action_homePageFragment_to_watchFilmFragment"
+            app:destination="@id/watchFilmFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/watchFilmFragment"
+        android:name="com.example.movieapp.view.WatchFilmFragment"
+        android:label="WatchFilmFragment" />
+</navigation>
