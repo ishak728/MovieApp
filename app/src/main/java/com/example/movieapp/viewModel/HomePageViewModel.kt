@@ -10,10 +10,15 @@ import kotlinx.coroutines.*
 class HomePageViewModel: ViewModel() {
 
     val movieApiService=MovieApiService()
-    val popularFilm= MutableLiveData<List<PopularFilm>>()
+
     val error=MutableLiveData<Boolean>()
     val loading=MutableLiveData<Boolean>()
-    private lateinit var job:Job
+    private lateinit var jobPopularFilm:Job
+    private lateinit var jobTopRatedFilm:Job
+    private lateinit var jobNowPlayingFilm:Job
+    val popularFilm= MutableLiveData<List<PopularFilm>>()
+    val topRatedFilm= MutableLiveData<List<PopularFilm>>()
+    val nowPlayingFilm= MutableLiveData<List<PopularFilm>>()
 
 
 
@@ -23,13 +28,53 @@ class HomePageViewModel: ViewModel() {
 
     }
     fun getDataFromPopularFilm(api_key:String,language:String,page:Int){
-        job=CoroutineScope(Dispatchers.IO).launch {
+        jobPopularFilm=CoroutineScope(Dispatchers.IO).launch {
             val response=movieApiService.getPopularFilm(api_key,language,page)
 
             withContext(Dispatchers.Main){
                 if(response.isSuccessful){
                     response.body()?.let {
-                        popularFilm.value=it
+                        popularFilm.value= arrayListOf(it)
+                    }
+                    error.value=false
+                    loading.value=false
+                }
+                else{//coroutinede hata oluşumu nasıl tespit edilir öğren
+                    loading.value=true
+                }
+            }
+        }
+
+    }
+
+    fun getDataFromTopRatedFilm(api_key:String,language:String,page:Int){
+        jobTopRatedFilm=CoroutineScope(Dispatchers.IO).launch {
+            val response=movieApiService.getTopRatedFilm(api_key,language,page)
+
+            withContext(Dispatchers.Main){
+                if(response.isSuccessful){
+                    response.body()?.let {
+                        topRatedFilm.value= arrayListOf(it)
+                    }
+                    error.value=false
+                    loading.value=false
+                }
+                else{//coroutinede hata oluşumu nasıl tespit edilir öğren
+                    loading.value=true
+                }
+            }
+        }
+
+    }
+
+    fun getDataFromNowPlayinFilm(api_key:String,language:String,page:Int){
+        jobNowPlayingFilm=CoroutineScope(Dispatchers.IO).launch {
+            val response=movieApiService.getNowPlayingFilm(api_key,language,page)
+
+            withContext(Dispatchers.Main){
+                if(response.isSuccessful){
+                    response.body()?.let {
+                        nowPlayingFilm.value= arrayListOf(it)
                     }
                     error.value=false
                     loading.value=false

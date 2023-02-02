@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id'kotlin-android-extensions'
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -39,6 +40,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.0'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation files('libs\\YouTubeAndroidPlayerApi-1.2.2 (1)\\YouTubeAndroidPlayerApi.jar')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -59,6 +61,12 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:2.9.0"
 
     //coroutine
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
 
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.0'
+    //glide
+    implementation "com.github.bumptech.glide:glide:4.9.0"
+
+    //YOUTUBEpLAYER
+    //implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.3'
+    //implementation 'com.google.android.youtube:youtube-player-api:1.2.2'
 }

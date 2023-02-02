@@ -16,10 +16,13 @@ import com.example.movieapp.viewModel.HomePageViewModel
 import kotlinx.android.synthetic.main.fragment_home_page.*
 
 class HomePageFragment : Fragment() {
-
-    var popularFilmAdapter=PopularFilmAdapter(arrayListOf())
     private lateinit var viewModel:HomePageViewModel
     val API_KEY="fba70e551d24fdc5babd3e7e382d2670"
+
+    var popularFilmAdapter=PopularFilmAdapter(arrayListOf())
+    var topRatedFilmAdapter=PopularFilmAdapter(arrayListOf())
+    var nowPlayingFilmAdapter=PopularFilmAdapter(arrayListOf())
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,23 +39,48 @@ class HomePageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        popularFilmRecyclerView.adapter=popularFilmAdapter
-        popularFilmRecyclerView.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-
         viewModel =ViewModelProviders.of(this).get(HomePageViewModel::class.java)
 
-
-        viewModel.getDataFromPopularFilm(API_KEY,"en-US",1)
-        observeLiveData()
+        showData()
     }
 
-    fun observeLiveData(){
+    fun showData(){
+        popularFilm()
+        topRatedFilm()
+        nowPlayingFilm()
+
+    }
+
+    fun popularFilm(){
+        popularFilmRecyclerView.adapter=popularFilmAdapter
+        popularFilmRecyclerView.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        viewModel.getDataFromPopularFilm(API_KEY,"en-US",1)
+
         viewModel.popularFilm.observe(viewLifecycleOwner, Observer {popularFilmList->
-        popularFilmAdapter.updatePopularFilmList(popularFilmList.get(0).results as ArrayList<PopularResults>)
+            popularFilmAdapter.updatePopularFilmList(popularFilmList.get(0).results as ArrayList<PopularResults>)
 
         })
+    }
 
+    fun topRatedFilm(){
+        topRatedFilmRecyclerView.adapter=topRatedFilmAdapter
+        topRatedFilmRecyclerView.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        viewModel.getDataFromTopRatedFilm(API_KEY,"en-US",1)
 
+        viewModel.topRatedFilm.observe(viewLifecycleOwner, Observer {topRatedFilmList->
+            topRatedFilmAdapter.updatePopularFilmList(topRatedFilmList.get(0).results as ArrayList<PopularResults>)
+
+        })
+    }
+    fun nowPlayingFilm(){
+        nowPlayingFilmRecyclerView.adapter=nowPlayingFilmAdapter
+        nowPlayingFilmRecyclerView.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        viewModel.getDataFromNowPlayinFilm(API_KEY,"en-US",1)
+
+        viewModel.nowPlayingFilm.observe(viewLifecycleOwner, Observer {nowPlayingFilmList->
+            nowPlayingFilmAdapter.updatePopularFilmList(nowPlayingFilmList.get(0).results as ArrayList<PopularResults>)
+
+        })
     }
 }
+

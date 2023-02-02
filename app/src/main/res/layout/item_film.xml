@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/filmImage"
-        android:layout_width="150dp"
+        android:layout_width="100dp"
         android:layout_height="150dp"
         android:scaleType="fitCenter"
         android:minHeight="150dp"
@@ -17,10 +17,10 @@
         />
     <TextView
         android:id="@+id/filmName"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:hint="film name"
-        android:textSize="20dp"/>
+        android:textSize="15dp"/>
 
 
 </LinearLayout>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigatinn"
     app:startDestination="@id/homePageFragment">
     <fragment
@@ -8,11 +9,35 @@
         android:name="com.example.movieapp.view.HomePageFragment"
         android:label="HomePageFragment" >
         <action
-            android:id="@+id/action_homePageFragment_to_watchFilmFragment"
-            app:destination="@id/watchFilmFragment" />
+            android:id="@+id/action_homePageFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/watchFilmFragment"
         android:name="com.example.movieapp.view.WatchFilmFragment"
-        android:label="WatchFilmFragment" />
+        android:label="WatchFilmFragment" >
+        <action
+            android:id="@+id/action_watchFilmFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <argument
+            android:name="film_id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.movieapp.view.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/action_detailFragment_to_watchFilmFragment"
+            app:destination="@id/watchFilmFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
+        <argument
+            android:name="film_id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>
