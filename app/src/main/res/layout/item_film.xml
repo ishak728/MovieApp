@@ -15,12 +15,7 @@
         android:minWidth="150dp"
         android:src="@drawable/ic_launcher_background"
         />
-    <TextView
-        android:id="@+id/filmName"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:hint="film name"
-        android:textSize="15dp"/>
+
 
 
 </LinearLayout>

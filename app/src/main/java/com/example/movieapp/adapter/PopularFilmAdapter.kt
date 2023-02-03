@@ -30,11 +30,10 @@ class PopularFilmAdapter(val popularFilmList:ArrayList<PopularResults>): Recycle
     }
 
     override fun onBindViewHolder(holder: PopularFilmViewolder, position: Int) {
-        holder.view.filmName.text=popularFilmList.get(position).original_title
+       // holder.view.filmName.text=popularFilmList.get(position).original_title
         holder.view.filmImage.downloadImage(popularFilmList.get(position).backdrop_path)
         holder.view.setOnClickListener{
 
-            println("(((((((((((((((((((((("+popularFilmList.get(position).id+"))))))))))))))))))")
             val action=HomePageFragmentDirections.actionHomePageFragmentToDetailFragment(popularFilmList.get(position).id)
             Navigation.findNavController(it).navigate(action)
         }

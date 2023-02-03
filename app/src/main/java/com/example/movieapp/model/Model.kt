@@ -3,7 +3,7 @@ package com.example.movieapp.model
 import com.google.gson.annotations.SerializedName
 
 
-
+//topRatedFilm ve nowPlayingFilm popularFilm modeliyle aynı olduğu için ayrı modeller oluşturmaya gerek duymadım
 data class PopularFilm(
     val page: Int,
     val results: List<PopularResults>,

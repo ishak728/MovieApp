@@ -13,7 +13,7 @@ class MovieApiService {
 
     val POPULAR_MOVİE_BASE_URL="https://api.themoviedb.org/3/movie/"
 
-        val popularMovieApi=Retrofit.Builder()
+        val movieApi=Retrofit.Builder()
             .baseUrl(POPULAR_MOVİE_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -22,26 +22,26 @@ class MovieApiService {
 
     suspend fun getPopularFilm(api_key:String,language:String,page:Int):Response<PopularFilm>{
 
-        return popularMovieApi.getPopularFilm(api_key,language,page)
+        return movieApi.getPopularFilm(api_key,language,page)
     }
     suspend fun getTopRatedFilm(api_key:String,language:String,page:Int):Response<PopularFilm>{
 
-        return popularMovieApi.getTopRatedFilm(api_key,language,page)
+        return movieApi.getTopRatedFilm(api_key,language,page)
     }
 
     suspend fun getNowPlayingFilm(api_key:String,language:String,page:Int):Response<PopularFilm>{
 
-        return popularMovieApi.getNowPlayingFilm(api_key,language,page)
+        return movieApi.getNowPlayingFilm(api_key,language,page)
     }
 
     suspend fun getDataFilm(movieId:Int,api_key:String,language:String):Response<DetailFilm>{
 
-        return popularMovieApi.getDetailFilm(movieId,api_key,language)
+        return movieApi.getDetailFilm(movieId,api_key,language)
     }
 
 
     suspend fun getFilmVideo(movieId:Int,api_key:String,language:String):Response<FilmVideos>{
-        return popularMovieApi.getFilmVideo(movieId,api_key,language)
+        return movieApi.getFilmVideo(movieId,api_key,language)
     }
 
 
